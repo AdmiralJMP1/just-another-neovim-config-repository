@@ -17,6 +17,9 @@ vim.opt.scrolloff = 15
 vim.opt.wrap = false
 vim.opt.signcolumn = 'yes'
 
+-- Max length of a line
+vim.opt.colorcolumn = {"80", "100", "120"}
+
 -- save automatically when text is changed
 vim.opt.updatetime = 50
 
