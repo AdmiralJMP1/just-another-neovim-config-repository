@@ -32,7 +32,7 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>fu", builtin.lsp_references, {desc = "LSP References (Find Usaged)"})
 vim.keymap.set("n", "<leader>f<leader>d", builtin.lsp_definitions, {desc = "LSP Definitions"})
 vim.keymap.set("n", "<leader>fd", builtin.lsp_document_symbols, {desc = "LSP Document Search"})
---
+
 -- There are also properties and methods by I can't find them useful
 vim.keymap.set("n", "<leader>fw", ":Telescope lsp_workspace_symbols symbols=class,constant,variable query=", {desc = "LSP Workspace Search"})
 vim.keymap.set("n", "<leader>fc", ":Telescope lsp_workspace_symbols symbols=class query=", {desc = "LSP Class Search"})

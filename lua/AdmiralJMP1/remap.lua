@@ -20,8 +20,8 @@ vim.keymap.set("n", "<Leader>k", ":bn<CR>", {desc = "Next buffer"})
 
 -- Copy / Paste stuff
 vim.keymap.set("n", "R", "\"_d", {desc = "Remove without yank"})
-vim.keymap.set("n", "x", "_dl", {desc = "Remove symbol without yank (right)"})
-vim.keymap.set("n", "X", "_dh", {desc = "Remove symbol without yank (left)"})
+vim.keymap.set("n", "x", "\"_dl", {noremap = true, desc = "Remove symbol without yank (right)"})
+vim.keymap.set("n", "X", "\"_dh", {noremap = true, desc = "Remove symbol without yank (left)"})
 vim.keymap.set("n", "<Leader>y", "\"*y", {desc = "Yank to system clipboard"})
 vim.keymap.set("x", "<Leader>p", "\"_dP", {desc = "Past without yank"})
 -- Hell-Spawned function to copy column of words
