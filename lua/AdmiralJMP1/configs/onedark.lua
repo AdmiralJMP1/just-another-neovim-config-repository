@@ -30,6 +30,7 @@ require('onedark').setup  {
 	-- Custom Highlights --
 	colors = {}, -- Override default colors
 	highlights = {
+        LineNr = {fg = '#cad5dd'},
         Visual = {bg = '#255590'},
     }, -- Override highlight groups
 
