@@ -150,5 +150,10 @@ return require('packer').startup(function(use)
 		config = [[ require("AdmiralJMP1/configs/whichkey") ]]
 	}
 
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
 end)
 
