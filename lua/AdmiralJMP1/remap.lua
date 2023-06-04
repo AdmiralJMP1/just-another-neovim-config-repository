@@ -14,15 +14,12 @@ vim.keymap.set("n", "<leader>/", ":noh<cr>", {desc = "Clear search"})
 vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "n", "nzz")
 
--- Buffers switch
-vim.keymap.set("n", "<Leader>j", ":bp<CR>", {desc = "Previous buffer"})
-vim.keymap.set("n", "<Leader>k", ":bn<CR>", {desc = "Next buffer"})
-
 -- Copy / Paste stuff
 vim.keymap.set("n", "R", "\"_d", {desc = "Remove without yank"})
 vim.keymap.set("n", "x", "\"_dl", {noremap = true, desc = "Remove symbol without yank (right)"})
 vim.keymap.set("n", "X", "\"_dh", {noremap = true, desc = "Remove symbol without yank (left)"})
 vim.keymap.set("n", "<Leader>y", "\"*y", {desc = "Yank to system clipboard"})
+vim.keymap.set("x", "<Leader>y", "\"*y", {desc = "Yank to system clipboard"})
 vim.keymap.set("x", "<Leader>p", "\"_dP", {desc = "Past without yank"})
 -- Hell-Spawned function to copy column of words
 local function yank_separate_lines(motion)
@@ -62,6 +59,24 @@ vim.keymap.set("n", "<leader>ls", "z=", {desc = "Spell check"})
 
 -- Tabs
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", {desc = "Close tab"})
+vim.keymap.set("n", "<leader>tk", "gt", {desc = "Next tab", noremap = true})
+vim.keymap.set("n", "<leader>tj", "gT", {desc = "Previous tab", noremap = true})
+
+-- Buffers
+vim.keymap.set("n", "<Leader>tb", ":%bd|e#|bd#<CR>", {desc = "Close all buffers except current"})
+vim.keymap.set("n", "<Leader>j", ":bp<CR>", {desc = "Previous buffer"})
+vim.keymap.set("n", "<Leader>k", ":bn<CR>", {desc = "Next buffer"})
+
+-- Windows
+vim.keymap.set("n", "<leader>w", "<C-w>", {desc = "Window management group"})
+local function toggle_quickfix()
+  if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
+    vim.cmd('copen')
+  else
+    vim.cmd('cclose')
+  end
+end
+vim.keymap.set("n", "<leader>qo", toggle_quickfix, {desc = "toggle_quickfix"})
 
 -- Editing mode
 vim.keymap.set("i", "<C-F>", "<C-o>\"_de", {desc = "Delete word forward"})

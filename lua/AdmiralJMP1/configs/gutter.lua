@@ -17,6 +17,8 @@ vim.api.nvim_exec([[
 
 vim.keymap.set("n", '<Leader>gn', ":GitGutterNextHunk<CR>", {desc = "Next Hunk"});
 vim.keymap.set("n", '<Leader>gN', ":GitGutterPrevHunk<CR>", {desc = "Prev Hunk"});
+vim.keymap.set("n", '<Leader>H', ":GitGutterPrevHunk<CR>", {desc = "Prev Hunk"});
+vim.keymap.set("n", '<Leader>h', ":GitGutterNextHunk<CR>", {desc = "Next Hunk"});
 vim.keymap.set("n", "<Leader>gp", ":GitGutterPreviewHunk<CR>", {desc = "Preview Hunk"});
 vim.keymap.set("n", "<leader>gu", ":GitGutterUndoHunk<CR>", {desc = "Undo Hunk"});
 

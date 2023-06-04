@@ -2,7 +2,16 @@ local builtin = require('telescope.builtin')
 local telescope = require('telescope')
 
 require('telescope').setup{
-	defaults = { file_ignore_patterns = {"node_modules"} },
+	defaults = {
+        file_ignore_patterns = {"node_modules"},
+        layout_strategy = "vertical",
+        layout_config = {
+            height = 0.95,
+            width = 0.9,
+            mirror = true,
+            prompt_position = "top",
+        },
+    },
 	extensions = {
 		fzf = {
 			fuzzy = true,                    -- false will only do exact matching
@@ -29,13 +38,13 @@ vim.keymap.set(
 )
 
 -- LSP search
-vim.keymap.set("n", "<leader>fu", builtin.lsp_references, {desc = "LSP References (Find Usaged)"})
-vim.keymap.set("n", "<leader>f<leader>d", builtin.lsp_definitions, {desc = "LSP Definitions"})
-vim.keymap.set("n", "<leader>fd", builtin.lsp_document_symbols, {desc = "LSP Document Search"})
+vim.keymap.set("n", "<leader>fu", function() builtin.lsp_references({fname_width = 80}) end, {desc = "LSP References (Find Usaged)"})
+vim.keymap.set("n", "<leader>f<leader>d", function() builtin.lsp_definitions({fname_width = 80}) end, {desc = "LSP Definitions"})
+vim.keymap.set("n", "<leader>fd", function() builtin.lsp_document_symbols({fname_width = 80}) end, {desc = "LSP Document Search"})
 
 -- There are also properties and methods by I can't find them useful
-vim.keymap.set("n", "<leader>fw", ":Telescope lsp_workspace_symbols symbols=class,constant,variable query=", {desc = "LSP Workspace Search"})
-vim.keymap.set("n", "<leader>fc", ":Telescope lsp_workspace_symbols symbols=class query=", {desc = "LSP Class Search"})
+vim.keymap.set("n", "<leader>fw", ":Telescope lsp_dynamic_workspace_symbols fname_width=80 symbols=class,constant,variable<CR>", {desc = "LSP Workspace Search"})
+vim.keymap.set("n", "<leader>fc", ":Telescope lsp_dynamic_workspace_symbols fname_width=80 symbols=class<CR>",  {desc = "LSP Class Search"})
 
 -- Metals menu
 vim.keymap.set("n", "<leader>fM", telescope.extensions.metals.commands, {desc = "Metals"})
