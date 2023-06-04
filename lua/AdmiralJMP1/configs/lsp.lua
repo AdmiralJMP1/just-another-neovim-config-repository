@@ -85,8 +85,7 @@ lsp.on_attach(function(_, bufnr)
     end
 
     vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, make_opts("Go to Defenition"))
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, make_opts("Info"))
-    vim.keymap.set("n", "<leader>li", vim.lsp.buf.hover, make_opts("Info (like 'K')"));
+    vim.keymap.set("n", "<leader>li", vim.lsp.buf.hover, make_opts("Info"))
     vim.keymap.set("n", "<leader>d", function() goto_diagnostic(vim.diagnostic.goto_next, vim.diagnostic.get_next_pos) end, make_opts("Next diagnostic"))
     vim.keymap.set("n", "<leader>D", function() goto_diagnostic(vim.diagnostic.goto_prev, vim.diagnostic.get_prev_pos) end, make_opts("Prev diagnostic"))
     vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, make_opts("Code action"))
@@ -141,10 +140,10 @@ metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- This is used to start metals ¯\_(ツ)_/¯ (was in manual setup)
 local metals_augroup = vim.api.nvim_create_augroup('nvim-metals', {clear = true})
 vim.api.nvim_create_autocmd('FileType', {
-  group = metals_augroup,
-  pattern = {'scala', 'sbt', 'java'},
-  callback = function()
-    require('metals').initialize_or_attach(metals_config)
-  end
+    group = metals_augroup,
+    pattern = {'scala', 'sbt', 'java'},
+    callback = function()
+        require('metals').initialize_or_attach(metals_config)
+    end
 })
 
