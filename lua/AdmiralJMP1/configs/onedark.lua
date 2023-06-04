@@ -32,6 +32,9 @@ require('onedark').setup  {
 	highlights = {
         LineNr = {fg = '#cad5dd'},
         Visual = {bg = '#255590'},
+        DiffAdd = {bg = "#4C874C"},
+        DiffChange = {bg = "#455683"},
+        DiffDelete = {bg = "#E06C75"},
     }, -- Override highlight groups
 
 	-- Plugins Config --
