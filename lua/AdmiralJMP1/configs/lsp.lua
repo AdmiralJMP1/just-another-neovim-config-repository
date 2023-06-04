@@ -63,24 +63,6 @@ local function change_eslint_severity()
     eslint_forced_warnings = not eslint_forced_warnings;
 end
 
-lsp.configure('eslint', {
-  handlers = {
-    ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
-      local diagnostics = result.diagnostics or {}
-      for _, diagnostic in ipairs(diagnostics) do
-        if diagnostic.source == 'eslint' then
-          if diagnostic.severity == vim.lsp.protocol.DiagnosticSeverity.Error and eslint_forced_warnings then
-            diagnostic.severity = vim.lsp.protocol.DiagnosticSeverity.Warning
-          end
-        end
-      end
-
-      vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
-    end,
-  },
-})
-
-
 -- LSP keymap
 lsp.on_attach(function(_, bufnr)
     local function make_opts(desc)
@@ -115,6 +97,38 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("i", "<C-p>", vim.lsp.buf.signature_help, make_opts("Like signature_help (show info about function e.g.)"))
     vim.keymap.set("n", "<C-p>", vim.lsp.buf.signature_help, make_opts("Like signature_help (show info about function e.g.)"))
 end)
+
+lsp.configure('eslint', {
+    handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+            function(_, result, ctx, config)
+                local diagnostics = result.diagnostics or {}
+                for _, diagnostic in ipairs(diagnostics) do
+                    if diagnostic.severity == vim.lsp.protocol.DiagnosticSeverity.Error and eslint_forced_warnings then
+                        diagnostic.severity = vim.lsp.protocol.DiagnosticSeverity.Warning
+                    end
+                end
+
+                vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+            end,
+            -- Without underline (it's too laggish)
+            {
+                underline = false,
+            }
+        ),
+    },
+})
+
+lsp.configure("tsserver", {
+    settings = {
+        typescript = {
+            format = {
+                insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+                insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+            },
+        },
+    },
+})
 
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.setup()
