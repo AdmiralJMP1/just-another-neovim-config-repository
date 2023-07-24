@@ -125,6 +125,19 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'chentoast/marks.nvim',
+        config = function ()
+            require("marks").setup({
+                default_mappings = false,
+                mappings = {
+                    set = "m",
+                    delete = "md",
+                },
+            });
+        end
+    }
+
+    use {
         'norcalli/nvim-colorizer.lua',
         config = function ()
             require("colorizer").setup{
