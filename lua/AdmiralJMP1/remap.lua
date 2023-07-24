@@ -63,7 +63,7 @@ vim.keymap.set("n", "<leader>tk", "gt", {desc = "Next tab", noremap = true})
 vim.keymap.set("n", "<leader>tj", "gT", {desc = "Previous tab", noremap = true})
 
 -- Buffers
-vim.keymap.set("n", "<Leader>tb", ":%bd|e#|bd#<CR>", {desc = "Close all buffers except current"})
+vim.keymap.set("n", "<Leader>tb", ":%bd|e#|bd#|:norm '\"|<CR>", {desc = "Close all buffers except current"})
 vim.keymap.set("n", "<Leader>j", ":bp<CR>", {desc = "Previous buffer"})
 vim.keymap.set("n", "<Leader>k", ":bn<CR>", {desc = "Next buffer"})
 
