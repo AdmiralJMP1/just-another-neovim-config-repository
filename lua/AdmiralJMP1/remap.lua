@@ -76,7 +76,9 @@ local function toggle_quickfix()
     vim.cmd('cclose')
   end
 end
-vim.keymap.set("n", "<leader>qo", toggle_quickfix, {desc = "toggle_quickfix"})
+
+-- Menu group
+vim.keymap.set("n", "<leader>mf", toggle_quickfix, {desc = "Toggle quickfix"})
 
 -- Editing mode
 vim.keymap.set("i", "<C-F>", "<C-o>\"_de", {desc = "Delete word forward"})
